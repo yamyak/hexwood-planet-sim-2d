@@ -1,19 +1,25 @@
 import mysql.connector
 
+
+# connect to the mysql database
 def openDB():
-	cnx = mysql.connector.connect(user='hex', password='hex0nmysQl', host='localhost')
+	cnx = mysql.connector.connect(user='', password='', host='')
 	cursor = cnx.cursor()
 	return cnx, cursor
 	
+# create database tables
 def createTables(cursor):
+  # create table for planet data
 	table_cmd = ('CREATE TABLE `data` '
                  '( `id` INTEGER, `name` VARCHAR(30), `period_time` FLOAT, `mean_anomaly` FLOAT, `eccentric_anomaly` FLOAT, '
                  '`radius` FLOAT, `angle` FLOAT, `x_location` FLOAT, `y_location` FLOAT )')
 	cursor.execute(table_cmd)
+  # create table for thread status
 	table_cmd = ('CREATE TABLE `status` '
                  '( `id` INTEGER, `name` VARCHAR(30), `dead` BOOLEAN )')
 	cursor.execute(table_cmd)
 	
+# insert planet and thread data into database
 def loadData(cursor):
 	row_cmd = ('INSERT INTO `data` VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)')
 	row_data = (1, "Mercury", 0, 0, 0, 0, 0, 0, 0)
@@ -90,14 +96,16 @@ def loadData(cursor):
 	row_cmd = ('INSERT INTO `status` VALUES (%s, %s, %s)')
 	row_data = (9, "Pluto", False)
 	cursor.execute(row_cmd, row_data)
-	
+
+# create database tables and insert data
 def loadDatabase(cnx, cursor):
-	cnx.database = 'hexwood001'
+	cnx.database = ''
 	createTables(cursor)
 	cnx.commit()
 	loadData(cursor)
 	cnx.commit()
 
+# initialize the database
 if __name__ == '__main__':
 	cnx, cursor = openDB()
 	loadDatabase(cnx, cursor)

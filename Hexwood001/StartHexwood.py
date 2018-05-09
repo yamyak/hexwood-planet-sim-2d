@@ -2,6 +2,7 @@ from Satellite import Satellite
 
 if __name__ == '__main__':
 
+  # initialize planet data
 	mercury = Satellite(1, "Mercury", 3.05076571932, 5.790905e10, 0.20563, 1.98855e30, 6.4185e23)
 	venus = Satellite(2, "Venus", 0.87467175463, 1.08208e11, 0.0067, 1.98855e30, 4.8676e24)
 	earth = Satellite(3, "Earth", 6.25904740362, 1.49598e11, 0.016711230, 1.98855e30, 5.97219e24)
@@ -12,6 +13,7 @@ if __name__ == '__main__':
 	neptune = Satellite(8, "Neptune", 4.4720222358, 4.49854e12, 0.00867797, 1.98855e30, 1.0243e26)
 	pluto = Satellite(9, "Pluto", 0.25359634031, 5.874e12, 0.244671664, 1.98855e30, 1.305e22)
 	
+  # start the planet threads
 	mercury.Start()
 	venus.Start()
 	earth.Start()
